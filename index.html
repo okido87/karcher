@@ -133,35 +133,20 @@
 <script>
 const demoData = {
     fino1: {
-        request: {
-            request_type: "PAYMENT", applicant_name: "TRẦN THỊ DUYÊN ANH", department: "Kế toán", request_date: "24-Aug-25", ref_no: "REF-00123", vendor_name: "Công ty TNHH Adeline Toàn Cầu", payment_method: "BANK", settlement_deadline: "30-Sep-25", currency: "VND", exchange_rate: 1, total_amount: 3550000, total_amount_vnd: 3550000, attachments: "Hóa đơn, Báo giá", 
-            signatures: { director: "Lê Việt Hùng", chief_accountant: "Nguyễn Thị Lan Anh", head_of_dept: "Trần Văn Bình", accountant: "Lê Minh Châu", requestor: "TRẦN THỊ DUYÊN ANH" },
-            bank_name: "ACB - Ngân hàng Á Châu", bank_account: "123456789", bank_account_holder: "CT TNHH ADELINE TOAN CAU"
-        },
+        request: { request_type: "PAYMENT", applicant_name: "TRẦN THỊ DUYÊN ANH", department: "Kế toán", request_date: "24-Aug-25", ref_no: "REF-00123", vendor_name: "Công ty TNHH Adeline Toàn Cầu", payment_method: "BANK", settlement_deadline: "30-Sep-25", currency: "VND", exchange_rate: 1, total_amount: 3550000, total_amount_vnd: 3550000, attachments: "Hóa đơn, Báo giá", signatures: { director: "Lê Việt Hùng", chief_accountant: "Nguyễn Thị Lan Anh", head_of_dept: "Trần Văn Bình", accountant: "Lê Minh Châu", requestor: "TRẦN THỊ DUYÊN ANH" }, bank_name: "ACB - Ngân hàng Á Châu", bank_account: "123456789", bank_account_holder: "CT TNHH ADELINE TOAN CAU" },
         details: [ { description: "Thanh toán tiền khách sạn Adeline (14-16/07)", amount: 2700000, amount_vnd: 2700000, remark: "Hóa đơn #123" }, { description: "Chi phí ăn uống theo công tác phí", amount: 500000, amount_vnd: 500000, remark: "2 ngày" }, { description: "Chi phí di chuyển taxi sân bay", amount: 350000, amount_vnd: 350000, remark: null } ]
     },
     fino2: {
-        request: {
-            request_type: "ADVANCE", applicant_name: "NGUYỄN VĂN AN", department: "Kinh doanh", request_date: "22-Aug-17", ref_no: "REF-00124", balance: 0, settlement_deadline: "31/09/2017", payment_method: "BANK",
-            currency: "USD", exchange_rate: 25000, total_amount: 380, total_amount_vnd: 9500000,
-            signatures: { director: "Lê Việt Hùng", chief_accountant: "Nguyễn Thị Lan Anh", head_of_dept: "Trần Văn Bình", accountant: "Lê Minh Châu", requestor: "NGUYỄN VĂN AN" },
-            bank_name: "VCB - Vietcombank", bank_account: "0501000130594", bank_account_holder: "NGUYEN TAN HIEN"
-        },
+        request: { request_type: "ADVANCE", applicant_name: "NGUYỄN VĂN AN", department: "Kinh doanh", request_date: "22-Aug-17", ref_no: "REF-00124", balance: 0, settlement_deadline: "31/09/2017", payment_method: "BANK", currency: "USD", exchange_rate: 25000, total_amount: 380, total_amount_vnd: 9500000, signatures: { director: "Lê Việt Hùng", chief_accountant: "Nguyễn Thị Lan Anh", head_of_dept: "Trần Văn Bình", accountant: "Lê Minh Châu", requestor: "NGUYỄN VĂN AN" }, bank_name: "VCB - Vietcombank", bank_account: "0501000130594", bank_account_holder: "NGUYEN TAN HIEN" },
         details: [ { description: "Tạm ứng mua màn hình Dell U2723QE", amount: 300, amount_vnd: 7500000, remark: "Theo báo giá Phong Vũ" }, { description: "Tạm ứng mua bàn phím cơ", amount: 80, amount_vnd: 2000000, remark: "Cho nhân viên mới" } ]
     },
     fino4: {
-        request: {
-            request_type: "REFUND", applicant_name: "TRẦN THỊ DUYÊN ANH", department: "Kế toán", request_date: "24-Aug-25", ref_no: "REF-00125", payment_method: "CASH", settlement_deadline: "N/A", currency: "VND", exchange_rate: 1, total_amount: 750000, total_amount_vnd: 750000, attachments: "Không có",
-            signatures: { director: "Lê Việt Hùng", chief_accountant: "Nguyễn Thị Lan Anh", head_of_dept: "Trần Văn Bình", requestor: "TRẦN THỊ DUYÊN ANH", accountant: "Lê Minh Châu" }
-        },
+        request: { request_type: "REFUND", applicant_name: "TRẦN THỊ DUYÊN ANH", department: "Kế toán", request_date: "24-Aug-25", ref_no: "REF-00125", payment_method: "CASH", settlement_deadline: "N/A", currency: "VND", exchange_rate: 1, total_amount: 750000, total_amount_vnd: 750000, attachments: "Không có", signatures: { director: "Lê Việt Hùng", chief_accountant: "Nguyễn Thị Lan Anh", head_of_dept: "Trần Văn Bình", requestor: "TRẦN THỊ DUYÊN ANH", accountant: "Lê Minh Châu" } },
         details: [ { description: "Thu hoàn ứng công tác phí ngày 20/08", amount: 750000, amount_vnd: 750000, remark: "Hoàn tiền thừa sau quyết toán" } ]
     },
     fino5: {
-        request: {
-            request_type: "RECEIPT", applicant_name: "PHAN MINH TUẤN", department: "Kế toán", request_date: "09-Sep-25", ref_no: "", payment_method: "CASH", currency: "VND", total_amount: 2700000, total_amount_vnd: 2700000, attachments: "",
-            signatures: { director: "Lê Việt Hùng", chief_accountant: "Nguyễn Thị Lan Anh", head_of_dept: "Trần Văn Bình", accountant: "Lê Minh Châu", requestor: "PHAN MINH TUẤN" }
-        },
-        details: [ { description: "Thu tiền mặt bán hàng", amount: 2700000, amount_vnd: 2700000, customer_id: "CUS-007", invoice: "INV-2025-098" } ]
+        request: { request_type: "RECEIPT", applicant_name: "PHAN MINH TUẤN", department: "Kế toán", request_date: "09-Sep-25", ref_no: "", payment_method: "CASH", currency: "EUR", exchange_rate: 27000, total_amount: 100, total_amount_vnd: 2700000, attachments: "", signatures: { director: "Lê Việt Hùng", chief_accountant: "Nguyễn Thị Lan Anh", head_of_dept: "Trần Văn Bình", accountant: "Lê Minh Châu", requestor: "PHAN MINH TUẤN" } },
+        details: [ { description: "Thu tiền mặt bán hàng", amount: 100, amount_vnd: 2700000, customer_id: "CUS-007", invoice: "INV-2025-098" } ]
     }
 };
 
@@ -171,10 +156,8 @@ function numberToWords(n) { if (n === null || n === undefined) return ''; n = pa
 function buildAndPopulateForm(formType, data, isDemo = false) {
     const { request, details } = data;
     
-    // *** START MODIFICATION 1: Luôn đọc số thành chữ từ total_amount_vnd ***
     const amountForWords = request.total_amount_vnd || request.total_amount;
     if (!request.amount_in_words) { request.amount_in_words = numberToWords(amountForWords); }
-    // *** END MODIFICATION 1 ***
     
     const isFino1 = formType === 'fino1', isFino2 = formType === 'fino2', isFino4 = formType === 'fino4', isFino5 = formType === 'fino5';
     let title = '', subtitle = '', infoGridHTML = '', detailsTableHTML = '', signatureAreaHTML = '';
@@ -183,6 +166,131 @@ function buildAndPopulateForm(formType, data, isDemo = false) {
     if (isFino2) { title = 'PHIẾU ĐỀ NGHỊ TẠM ỨNG'; subtitle = 'REQUEST FOR ADVANCE'; }
     if (isFino4) { title = 'ĐỀ NGHỊ THU HOÀN ỨNG'; subtitle = 'REFUND ADVANCE PAYMENT REQUEST'; }
     if (isFino5) { title = 'ĐỀ NGHỊ THU TIỀN'; subtitle = 'PAYMENT COLLECTION REQUEST'; }
+
+    // *** START MODIFICATION 1: Sửa hàm tạo thông tin ngân hàng ***
+    const createBankInfoHTML = (req) => {
+        const method = req.payment_method?.toLowerCase();
+        if (method !== 'bank') { return ''; }
+        
+        const bankAndAccount = `${req.bank_name || ''} - ${req.bank_account || ''}`;
+        const holder = req.bank_account_holder || '';
+
+        // Chỉ hiển thị dòng này nếu có thông tin ngân hàng
+        if ((bankAndAccount.trim() === '-') && !holder) {
+            return '';
+        }
+
+        return `<tr>
+            <td class="label col-1">Thông tin TK <span class="lang-en">(Bank Info)</span>:</td>
+            <td class="value" colspan="3">
+                <span class="data-value">${bankAndAccount.trim() === '-' ? '' : bankAndAccount}</span>
+                &nbsp; | &nbsp; 
+                Chủ tài khoản <span class="lang-en">(Acc. Holder)</span>: <span class="data-value">${holder}</span>
+            </td>
+        </tr>`;
+    };
+    // *** END MODIFICATION 1 ***
+
+    const baseInfoHTML = `<tr><td class="label col-1">Người đề nghị <span class="lang-en">(Applicant)</span>:</td><td class="value col-2 data-value">${request.applicant_name || ''}</td><td class="label col-3">Ngày <span class="lang-en">(Date)</span>:</td><td class="value col-4 data-value">${request.request_date || ''}</td></tr><tr><td class="label col-1">Bộ phận <span class="lang-en">(Dept)</span>:</td><td class="value col-2 data-value">${request.department || ''}</td><td class="label col-3">Số <span class="lang-en">(Ref No.)</span>:</td><td class="value col-4 data-value">${request.ref_no || ''}</td></tr>`;
+
+    if (isFino5) {
+        infoGridHTML = baseInfoHTML + `<tr><td class="label">Phương thức thanh toán <span class="lang-en">(Method of Payment)</span>:</td><td colspan="3" class="value checkbox-container"><div class="payment-methods"><div class="method"><span class="checkbox-box data-value">${request.payment_method?.toLowerCase() === 'cash' ? 'X' : ''}</span> Cash</div><div class="method"><span class="checkbox-box data-value">${request.payment_method?.toLowerCase() === 'bank' ? 'X' : ''}</span> Bank transfer</div></div></td></tr>`;
+    } else if (isFino2) {
+        infoGridHTML = baseInfoHTML + `<tr><td class="label col-1">Số dư tạm ứng <span class="lang-en">(Advance balance)</span>:</td><td class="value col-2 data-value">${formatCurrency(request.balance)}</td><td class="label col-3">Hạn thanh toán <span class="lang-en">(Deadline)</span>:</td><td class="value col-4 data-value">${request.settlement_deadline || ''}</td></tr><tr><td class="label">Phương thức thanh toán <span class="lang-en">(Method of Payment)</span>:</td><td colspan="3" class="value checkbox-container"><div class="payment-methods"><div class="method"><span class="checkbox-box data-value">${request.payment_method?.toLowerCase() === 'cash' ? 'X' : ''}</span> Cash</div><div class="method"><span class="checkbox-box data-value">${request.payment_method?.toLowerCase() === 'bank' ? 'X' : ''}</span> Bank transfer</div></div></td></tr>${createBankInfoHTML(request)}`;
+    } else if (isFino1) {
+        infoGridHTML = baseInfoHTML + `<tr><td class="label col-1">Tên nhà cung cấp <span class="lang-en">(Vendor name)</span>:</td><td class="value col-2 data-value">${request.vendor_name || ''}</td><td class="label col-3">Hạn thanh toán <span class="lang-en">(Deadline)</span>:</td><td class="value col-4 data-value">${request.settlement_deadline || ''}</td></tr><tr><td class="label">Phương thức thanh toán <span class="lang-en">(Method of Payment)</span>:</td><td colspan="3" class="value checkbox-container"><div class="payment-methods"><div class="method"><span class="checkbox-box data-value">${request.payment_method?.toLowerCase() === 'cash' ? 'X' : ''}</span> Cash</div><div class="method"><span class="checkbox-box data-value">${request.payment_method?.toLowerCase() === 'visa' ? 'X' : ''}</span> VISA</div><div class="method"><span class="checkbox-box data-value">${request.payment_method?.toLowerCase() === 'bank' ? 'X' : ''}</span> Bank transfer</div><div class="method"><span class="checkbox-box data-value">${request.payment_method?.toLowerCase() === 'debt' ? 'X' : ''}</span> Debt offset</div></div></td></tr>${createBankInfoHTML(request)}`;
+    } else if (isFino4) { 
+        infoGridHTML = baseInfoHTML + `<tr><td class="label col-1">Phương thức thanh toán <span class="lang-en">(Method of Payment)</span>:</td><td class="value col-2 checkbox-container"><div class="payment-methods"><div class="method"><span class="checkbox-box data-value">${request.payment_method?.toLowerCase() === 'cash' ? 'X' : ''}</span> Cash</div><div class="method"><span class="checkbox-box data-value">${request.payment_method?.toLowerCase() === 'bank' ? 'X' : ''}</span> Bank transfer</div></div></td><td class="label col-3">Hạn thanh toán <span class="lang-en">(Deadline)</span>:</td><td class="value col-4 data-value">${request.settlement_deadline || ''}</td></tr>${createBankInfoHTML(request)}`;
+    }
+
+    const isForeignCurrency = request.currency && request.currency.toUpperCase() !== 'VND';
+    let currencyInfoHTML = '';
+    let tableHeaders = '';
+    let tableFooter = '';
+    let detailsRowsHTML = '';
+
+    if (isForeignCurrency) {
+        // *** START MODIFICATION 2: Căn phải thông tin tỷ giá ***
+        currencyInfoHTML = `<div class="summary-section" style="margin-bottom: 5px; text-align: right;">
+            <strong>Loại tiền <span class="lang-en">(Currency)</span>:</strong> <span class="data-value">${request.currency}</span> &nbsp;&nbsp;&nbsp;&nbsp;
+            <strong>Tỷ giá <span class="lang-en">(Exchange Rate)</span>:</strong> <span class="data-value">${formatCurrency(request.exchange_rate)}</span>
+        </div>`;
+        // *** END MODIFICATION 2 ***
+
+        tableHeaders = `
+            <th style="width:5%">STT<br><span class="lang-en">No</span></th>
+            <th style="width:35%">Diễn giải<br><span class="lang-en">Description</span></th>
+            <th style="width:20%">Số tiền (${request.currency})<br><span class="lang-en">Amount</span></th>
+            <th style="width:20%">Số tiền (VND)<br><span class="lang-en">Amount</span></th>
+            <th style="width:20%">Ghi chú<br><span class="lang-en">Remark</span></th>`;
+
+        details.forEach((item, index) => {
+            let remarkText = '';
+            if (isFino5) {
+                let remarkParts = [];
+                if (item.customer_id) remarkParts.push(`Customer ID: ${item.customer_id}`);
+                if (item.invoice) remarkParts.push(`Invoice: ${item.invoice}`);
+                remarkText = remarkParts.join(', ');
+            } else {
+                remarkText = item.remark || '';
+            }
+
+            detailsRowsHTML += `<tr>
+                <td class="center data-value">${index + 1}</td>
+                <td class="data-value">${item.description || ''}</td>
+                <td class="number data-value">${formatCurrency(item.amount)}</td>
+                <td class="number data-value">${formatCurrency(item.amount_vnd)}</td>
+                <td class="data-value">${remarkText}</td>
+            </tr>`;
+        });
+        
+        tableFooter = `<tfoot><tr>
+            <td colspan="2" style="text-align:right; font-weight:bold;">TỔNG CỘNG <span class="lang-en">(TOTAL)</span></td>
+            <td class="number data-value" style="font-weight:bold;">${formatCurrency(request.total_amount)}</td>
+            <td class="number data-value" style="font-weight:bold;">${formatCurrency(request.total_amount_vnd)}</td>
+            <td></td>
+        </tr></tfoot>`;
+
+    } else { // Trường hợp là VND
+        const headerWidths = isFino5 ? {no: '5%', desc: '40%', amount: '25%', remark: '30%'} : {no: '9%', desc: '46%', amount: '25%', remark: '20%'};
+        tableHeaders = `<th style="width:${headerWidths.no}">STT<br><span class="lang-en">No</span></th>
+                        <th style="width:${headerWidths.desc}">Diễn giải<br><span class="lang-en">Description</span></th>
+                        <th style="width:${headerWidths.amount}">Số tiền (VND)<br><span class="lang-en">Amount</span></th>
+                        <th style="width:${headerWidths.remark}">Ghi chú<br><span class="lang-en">Remark</span></th>`;
+        
+        details.forEach((item, index) => {
+            let remarkText = '';
+            if (isFino5) {
+                let remarkParts = [];
+                if (item.customer_id) remarkParts.push(`Customer ID: ${item.customer_id}`);
+                if (item.invoice) remarkParts.push(`Invoice: ${item.invoice}`);
+                remarkText = remarkParts.join(', ');
+            } else {
+                remarkText = item.remark || '';
+            }
+
+            detailsRowsHTML += `<tr>
+                <td class="center data-value">${index + 1}</td>
+                <td class="data-value">${item.description || ''}</td>
+                <td class="number data-value">${formatCurrency(item.amount)}</td>
+                <td class="data-value">${remarkText}</td>
+            </tr>`;
+        });
+        
+        tableFooter = `<tfoot><tr>
+            <td colspan="2" style="text-align:right; font-weight:bold;">TỔNG CỘNG <span class="lang-en">(TOTAL)</span></td>
+            <td class="number data-value" style="font-weight:bold;">${formatCurrency(request.total_amount)}</td>
+            <td></td>
+        </tr></tfoot>`;
+    }
+
+    const advanceDetailTitle = isFino2 ? `<p style="font-weight:bold;">Chi tiết tạm ứng <span class="lang-en">(Advance detail)</span>:</p>` : '';
+    detailsTableHTML = `${advanceDetailTitle}${currencyInfoHTML}
+        <table class="details-table">
+            <thead><tr>${tableHeaders}</tr></thead>
+            <tbody>${detailsRowsHTML}</tbody>
+            ${tableFooter}
+        </table>`;
 
     const buildSignature = (roleName, name) => { 
         const roleHTML = `<div class="role">${roleName}</div>`;
@@ -196,94 +304,13 @@ function buildAndPopulateForm(formType, data, isDemo = false) {
     };
     
     const signatures = { director: isDemo ? request.signatures.director : request.approver_id, chief_accountant: isDemo ? request.signatures.chief_accountant : request.chief_accountant_id, head_of_dept: isDemo ? request.signatures.head_of_dept : request.checker_id, requestor: isDemo ? request.signatures.requestor : request.applicant_id, accountant: isDemo ? request.signatures.accountant : request.accountant_id };
-
-    if (isFino5) {
-        infoGridHTML = `<tr><td class="label col-1">Người đề nghị <span class="lang-en">(Applicant)</span>:</td><td class="value col-2 data-value">${request.applicant_name || ''}</td><td class="label col-3">Ngày <span class="lang-en">(Date)</span>:</td><td class="value col-4 data-value">${request.request_date || ''}</td></tr><tr><td class="label col-1">Bộ phận <span class="lang-en">(Dept)</span>:</td><td class="value col-2 data-value">${request.department || ''}</td><td class="label col-3">Số <span class="lang-en">(Ref No.)</span>:</td><td class="value col-4 data-value">${request.ref_no || ''}</td></tr><tr><td class="label">Phương thức thanh toán <span class="lang-en">(Method of Payment)</span>:</td><td colspan="3" class="value checkbox-container"><div class="payment-methods"><div class="method"><span class="checkbox-box data-value">${request.payment_method?.toLowerCase() === 'cash' ? 'X' : ''}</span> Cash</div><div class="method"><span class="checkbox-box data-value">${request.payment_method?.toLowerCase() === 'bank' ? 'X' : ''}</span> Bank transfer</div></div></td></tr>`;
-        let detailsRowsHTML = '';
-        details.forEach((item, index) => { let remarkText = []; if (item.customer_id) remarkText.push(`Customer ID: ${item.customer_id}`); if (item.invoice) remarkText.push(`Invoice: ${item.invoice}`); detailsRowsHTML += `<tr><td class="center data-value">${index + 1}</td><td class="data-value">${item.description || ''}</td><td class="number data-value">${formatCurrency(item.amount)}</td><td class="data-value">${remarkText.join(', ')}</td></tr>`; });
-        detailsTableHTML = `<table class="details-table"><thead><tr><th style="width:5%;">Số TT<br><span class="lang-en">No</span></th><th style="width:40%;">Diễn giải<br><span class="lang-en">Description</span></th><th style="width:25%;">Số tiền ( vnđ )<br><span class="lang-en">Amount</span></th><th style="width:30%;">Ghi chú<br><span class="lang-en">Remark</span></th></tr></thead><tbody>${detailsRowsHTML}</tbody><tfoot><tr><td colspan="2" style="text-align:right; font-weight:bold;">TOTAL</td><td class="number data-value" style="font-weight:bold;">${formatCurrency(request.total_amount)}</td><td></td></tr></tfoot></table>`;
-        const sigDirectorHTML = buildSignature('Giám đốc<br><span class="lang-en">Director</span>', signatures.director); const sigChiefAccHTML = buildSignature('Kế toán trưởng<br><span class="lang-en">Chief accountant</span>', signatures.chief_accountant); const sigHeadDeptHTML = buildSignature('Trưởng bộ phận<br><span class="lang-en">Head of dept.</span>', signatures.head_of_dept); const sigRequestorHTML = buildSignature('Người đề nghị<br><span class="lang-en">Requestor</span>', signatures.requestor); const sigAccountantHTML = buildSignature('Kế toán thanh toán<br><span class="lang-en">Accountant</span>', signatures.accountant);
-        signatureAreaHTML = `<div class="signature-area"><div class="signature-row"><div class="signature-block">${sigDirectorHTML}</div><div class="signature-block">${sigChiefAccHTML}</div><div class="signature-block">${sigHeadDeptHTML}</div></div><div class="signature-row"><div class="signature-block">${sigRequestorHTML}</div><div class="signature-block">${sigAccountantHTML}</div><div class="signature-block"></div></div></div>`;
-    } else {
-        const createBankInfoHTML = (req) => { const method = req.payment_method?.toLowerCase(); if (method !== 'bank') { return ''; } const bankAndAccount = `${req.bank_name || ''} - ${req.bank_account || ''}`; return `<tr><td class="label col-1">Ngân hàng & STK <span class="lang-en">(Bank & Acc. No.)</span>:</td><td class="value col-2 data-value">${bankAndAccount.trim() === '-' ? '' : bankAndAccount}</td><td class="label col-3">Chủ tài khoản <span class="lang-en">(Acc. Holder)</span>:</td><td class="value col-4 data-value">${req.bank_account_holder || ''}</td></tr>`; };
-        let baseInfoHTML = `<tr><td class="label col-1">Người đề nghị <span class="lang-en">(Applicant)</span>:</td><td class="value col-2 data-value">${request.applicant_name || ''}</td><td class="label col-3">Ngày <span class="lang-en">(Date)</span>:</td><td class="value col-4 data-value">${request.request_date || ''}</td></tr><tr><td class="label col-1">Bộ phận <span class="lang-en">(Dept)</span>:</td><td class="value col-2 data-value">${request.department || ''}</td><td class="label col-3">Số <span class="lang-en">(Ref No.)</span>:</td><td class="value col-4 data-value">${request.ref_no || ''}</td></tr>`;
-        if (isFino2) { infoGridHTML = baseInfoHTML + `<tr><td class="label col-1">Số dư tạm ứng <span class="lang-en">(Advance balance)</span>:</td><td class="value col-2 data-value">${formatCurrency(request.balance)}</td><td class="label col-3">Hạn thanh toán <span class="lang-en">(Deadline)</span>:</td><td class="value col-4 data-value">${request.settlement_deadline || ''}</td></tr><tr><td class="label">Phương thức thanh toán <span class="lang-en">(Method of Payment)</span>:</td><td colspan="3" class="value checkbox-container"><div class="payment-methods"><div class="method"><span class="checkbox-box data-value">${request.payment_method?.toLowerCase() === 'cash' ? 'X' : ''}</span> Cash</div><div class="method"><span class="checkbox-box data-value">${request.payment_method?.toLowerCase() === 'bank' ? 'X' : ''}</span> Bank transfer</div></div></td></tr>${createBankInfoHTML(request)}`; } 
-        else if (isFino1) { infoGridHTML = baseInfoHTML + `<tr><td class="label col-1">Tên nhà cung cấp <span class="lang-en">(Vendor name)</span>:</td><td class="value col-2 data-value">${request.vendor_name || ''}</td><td class="label col-3">Hạn thanh toán <span class="lang-en">(Deadline)</span>:</td><td class="value col-4 data-value">${request.settlement_deadline || ''}</td></tr><tr><td class="label">Phương thức thanh toán <span class="lang-en">(Method of Payment)</span>:</td><td colspan="3" class="value checkbox-container"><div class="payment-methods"><div class="method"><span class="checkbox-box data-value">${request.payment_method?.toLowerCase() === 'cash' ? 'X' : ''}</span> Cash</div><div class="method"><span class="checkbox-box data-value">${request.payment_method?.toLowerCase() === 'visa' ? 'X' : ''}</span> VISA</div><div class="method"><span class="checkbox-box data-value">${request.payment_method?.toLowerCase() === 'bank' ? 'X' : ''}</span> Bank transfer</div><div class="method"><span class="checkbox-box data-value">${request.payment_method?.toLowerCase() === 'debt' ? 'X' : ''}</span> Debt offset</div></div></td></tr>${createBankInfoHTML(request)}`; } 
-        else if (isFino4) { infoGridHTML = baseInfoHTML + `<tr><td class="label col-1">Phương thức thanh toán <span class="lang-en">(Method of Payment)</span>:</td><td class="value col-2 checkbox-container"><div class="payment-methods"><div class="method"><span class="checkbox-box data-value">${request.payment_method?.toLowerCase() === 'cash' ? 'X' : ''}</span> Cash</div><div class="method"><span class="checkbox-box data-value">${request.payment_method?.toLowerCase() === 'bank' ? 'X' : ''}</span> Bank transfer</div></div></td><td class="label col-3">Hạn thanh toán <span class="lang-en">(Deadline)</span>:</td><td class="value col-4 data-value">${request.settlement_deadline || ''}</td></tr>${createBankInfoHTML(request)}`; }
-        
-        // *** START MODIFICATION 2: Logic xử lý đa tiền tệ cho bảng chi tiết ***
-        const isForeignCurrency = request.currency && request.currency.toUpperCase() !== 'VND';
-        let currencyInfoHTML = '';
-        let tableHeaders = '';
-        let tableFooter = '';
-        let detailsRowsHTML = '';
-
-        if (isForeignCurrency) {
-            currencyInfoHTML = `<div class="summary-section" style="margin-bottom: 5px;">
-                <strong>Loại tiền <span class="lang-en">(Currency)</span>:</strong> <span class="data-value">${request.currency}</span> &nbsp;&nbsp;&nbsp;&nbsp;
-                <strong>Tỷ giá <span class="lang-en">(Exchange Rate)</span>:</strong> <span class="data-value">${formatCurrency(request.exchange_rate)}</span>
-            </div>`;
-
-            tableHeaders = `
-                <th style="width:5%">STT<br><span class="lang-en">No</span></th>
-                <th style="width:35%">Diễn giải<br><span class="lang-en">Description</span></th>
-                <th style="width:20%">Số tiền (${request.currency})<br><span class="lang-en">Amount</span></th>
-                <th style="width:20%">Số tiền (VND)<br><span class="lang-en">Amount</span></th>
-                <th style="width:20%">Ghi chú<br><span class="lang-en">Remark</span></th>`;
-
-            details.forEach((item, index) => {
-                detailsRowsHTML += `<tr>
-                    <td class="center data-value">${index + 1}</td>
-                    <td class="data-value">${item.description}</td>
-                    <td class="number data-value">${formatCurrency(item.amount)}</td>
-                    <td class="number data-value">${formatCurrency(item.amount_vnd)}</td>
-                    <td class="data-value">${item.remark || ''}</td>
-                </tr>`;
-            });
-            
-            tableFooter = `<tfoot><tr>
-                <td colspan="2" style="text-align:right; font-weight:bold;">TỔNG CỘNG <span class="lang-en">(TOTAL)</span></td>
-                <td class="number data-value" style="font-weight:bold;">${formatCurrency(request.total_amount)}</td>
-                <td class="number data-value" style="font-weight:bold;">${formatCurrency(request.total_amount_vnd)}</td>
-                <td></td>
-            </tr></tfoot>`;
-
-        } else { // Trường hợp là VND
-            const detailsTitle = isFino2 ? 'Số tiền <span class="lang-en">(Amount)</span>' : 'Số tiền <span class="lang-en">(VND)</span>';
-            tableHeaders = `<th style="width:9%">STT <span class="lang-en">(No)</span></th>
-                            <th style="width:46%">Diễn giải <span class="lang-en">(Description)</span></th>
-                            <th style="width:25%">${detailsTitle}</th>
-                            <th style="width:20%">Ghi chú <span class="lang-en">(Remark)</span></th>`;
-            
-            details.forEach((item, index) => {
-                detailsRowsHTML += `<tr>
-                    <td class="center data-value">${index + 1}</td>
-                    <td class="data-value">${item.description}</td>
-                    <td class="number data-value">${formatCurrency(item.amount)}</td>
-                    <td class="data-value">${item.remark || ''}</td>
-                </tr>`;
-            });
-            
-            tableFooter = `<tfoot><tr>
-                <td colspan="2" style="text-align:right; font-weight:bold;">TỔNG CỘNG <span class="lang-en">(TOTAL)</span></td>
-                <td class="number data-value" style="font-weight:bold;">${formatCurrency(request.total_amount)}</td>
-                <td></td>
-            </tr></tfoot>`;
-        }
-
-        const advanceDetailTitle = isFino2 ? `<p style="font-weight:bold;">Chi tiết tạm ứng <span class="lang-en">(Advance detail)</span>:</p>` : '';
-        detailsTableHTML = `${advanceDetailTitle}${currencyInfoHTML}
-            <table class="details-table">
-                <thead><tr>${tableHeaders}</tr></thead>
-                <tbody>${detailsRowsHTML}</tbody>
-                ${tableFooter}
-            </table>`;
-        // *** END MODIFICATION 2 ***
-        
-        const sigDirectorHTML = buildSignature('Giám đốc<br><span class="lang-en">Director</span>', signatures.director); const sigChiefAccHTML = buildSignature('Kế toán trưởng<br><span class="lang-en">Chief accountant</span>', signatures.chief_accountant); const sigHeadDeptHTML = buildSignature('Trưởng bộ phận<br><span class="lang-en">Head of dept.</span>', signatures.head_of_dept); const sigRequestorHTML = buildSignature('Người đề nghị<br><span class="lang-en">Requestor</span>', signatures.requestor); const sigAccountantHTML = buildSignature('Kế toán thanh toán<br><span class="lang-en">Accountant</span>', signatures.accountant);
-        signatureAreaHTML = `<div class="signature-area"><div class="signature-row"><div class="signature-block">${sigDirectorHTML}</div><div class="signature-block">${sigChiefAccHTML}</div><div class="signature-block">${sigHeadDeptHTML}</div></div><div class="signature-row"><div class="signature-block">${sigRequestorHTML}</div><div class="signature-block">${sigAccountantHTML}</div><div class="signature-block"></div></div></div>`;
-    }
-
+    const sigDirectorHTML = buildSignature('Giám đốc<br><span class="lang-en">Director</span>', signatures.director); 
+    const sigChiefAccHTML = buildSignature('Kế toán trưởng<br><span class="lang-en">Chief accountant</span>', signatures.chief_accountant); 
+    const sigHeadDeptHTML = buildSignature('Trưởng bộ phận<br><span class="lang-en">Head of dept.</span>', signatures.head_of_dept); 
+    const sigRequestorHTML = buildSignature('Người đề nghị<br><span class="lang-en">Requestor</span>', signatures.requestor); 
+    const sigAccountantHTML = buildSignature('Kế toán thanh toán<br><span class="lang-en">Accountant</span>', signatures.accountant);
+    signatureAreaHTML = `<div class="signature-area"><div class="signature-row"><div class="signature-block">${sigDirectorHTML}</div><div class="signature-block">${sigChiefAccHTML}</div><div class="signature-block">${sigHeadDeptHTML}</div></div><div class="signature-row"><div class="signature-block">${sigRequestorHTML}</div><div class="signature-block">${sigAccountantHTML}</div><div class="signature-block"></div></div></div>`;
+    
     const attachmentsHTML = (isFino1 || isFino4 || isFino5) ? `<div class="summary-section"><strong>Chứng từ đính kèm <span class="lang-en">(Supporting document)</span>:</strong> <span class="data-value">${request.attachments || ''}</span></div>` : '';
     const finalHTML = `<div class="watermark">${isDemo ? 'BẢN DEMO' : ''}</div><div class="form-header"><div class="company-name">KARCHER VIETNAM</div><div class="form-no">Form no: <span class="data-value">${formType.toUpperCase().replace('O','0')}</span></div></div><h1 class="form-title">${title}</h1><h2 class="form-subtitle lang-en">${subtitle}</h2><table class="info-grid">${infoGridHTML}</table>${detailsTableHTML}<div class="summary-section"><strong>Bằng chữ <span class="lang-en">(In words)</span>:</strong> <span class="amount-in-words data-value">${request.amount_in_words || ''}</span></div>${attachmentsHTML}${signatureAreaHTML}`;
     document.getElementById(`form-${formType}`).innerHTML = finalHTML;
@@ -293,7 +320,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const formSelector = document.getElementById('form-selector');
     const urlParams = new URLSearchParams(window.location.search);
     const processDataFromUrl = () => { try { 
-        // *** START MODIFICATION 3: Thêm các trường tiền tệ vào requestData ***
         const requestData = { 
             request_type: urlParams.get('request_type'), applicant_name: urlParams.get('applicant_name'), department: urlParams.get('department'), request_date: urlParams.get('request_date'), ref_no: urlParams.get('ref_no'), vendor_name: urlParams.get('vendor_name'), payment_method: urlParams.get('payment_method'), settlement_deadline: urlParams.get('settlement_deadline'),
             currency: urlParams.get('currency'),
@@ -304,9 +330,10 @@ document.addEventListener('DOMContentLoaded', function() {
             bank_name: urlParams.get('bank_name'), bank_account: urlParams.get('bank_account'), bank_account_holder: urlParams.get('bank_account_holder'),
             applicant_id: urlParams.get('applicant_id'), checker_id: urlParams.get('checker_id'), approver_id: urlParams.get('approver_id'), chief_accountant_id: urlParams.get('chief_accountant_id'), accountant_id: urlParams.get('accountant_id')
         };
-        // *** END MODIFICATION 3 ***
         
-        const detailsData = JSON.parse(urlParams.get('details_json') || '[]'); 
+        const detailsDataStr = urlParams.get('details_json');
+        if (!detailsDataStr) { throw new Error("details_json parameter is missing"); }
+        const detailsData = JSON.parse(detailsDataStr); 
         let activeFormId = ''; 
         const formType = requestData.request_type; 
         if (formType === 'PAYMENT') { activeFormId = 'fino1'; } 
