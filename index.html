@@ -114,9 +114,9 @@
 
 <header class="controls no-print">
     <select id="form-selector">
-        <option value="fino1">Đề nghị Thanh toán (FINO1)</option>
-        <option value="fino2">Đề nghị Tạm ứng (FINO2)</option>
-        <option value="fino4">Đề nghị Thu Hoàn ứng (FINO4)</option>
+        <option value="fino1">Đề nghị Thanh toán (FIN01)</option>
+        <option value="fino2">Đề nghị Tạm ứng (FIN02)</option>
+        <option value="fino4">Đề nghị Thu Hoàn ứng (FIN04)</option>
         <option value="fino5">Đề nghị Thu tiền (FIN05)</option>
     </select>
     <div class="actions">
@@ -171,7 +171,6 @@ function buildAndPopulateForm(formType, data, isDemo = false) {
     if (isFino4) { title = 'ĐỀ NGHỊ THU HOÀN ỨNG'; subtitle = 'REFUND ADVANCE PAYMENT REQUEST'; }
     if (isFino5) { title = 'ĐỀ NGHỊ THU TIỀN'; subtitle = 'PAYMENT COLLECTION REQUEST'; }
 
-    // *** START MODIFICATION: Gộp thông tin ngân hàng ***
     const createBankInfoHTML = (req) => {
         const method = req.payment_method?.toLowerCase();
         if (method !== 'bank') { return ''; }
@@ -200,7 +199,6 @@ function buildAndPopulateForm(formType, data, isDemo = false) {
             </td>
         </tr>`;
     };
-    // *** END MODIFICATION ***
     
     const baseInfoHTML = `<tr><td class="label col-1">Người đề nghị <span class="lang-en">(Applicant)</span>:</td><td class="value col-2 data-value">${request.applicant_name || ''}</td><td class="label col-3">Ngày <span class="lang-en">(Date)</span>:</td><td class="value col-4 data-value">${request.request_date || ''}</td></tr><tr><td class="label col-1">Bộ phận <span class="lang-en">(Dept)</span>:</td><td class="value col-2 data-value">${request.department || ''}</td><td class="label col-3">Số <span class="lang-en">(Ref No.)</span>:</td><td class="value col-4 data-value">${request.ref_no || ''}</td></tr>`;
 
@@ -224,13 +222,15 @@ function buildAndPopulateForm(formType, data, isDemo = false) {
         currencyInfoHTML = `<div class="summary-section" style="margin-bottom: 5px; text-align: right;"><strong>Loại tiền <span class="lang-en">(Currency)</span>:</strong> <span class="data-value">${request.currency}</span> &nbsp;&nbsp;&nbsp;&nbsp;<strong>Tỷ giá <span class="lang-en">(Exchange Rate)</span>:</strong> <span class="data-value">${formatCurrency(request.exchange_rate)}</span></div>`;
         
         if (isFino1) {
+             // START MODIFICATION: Thay đổi độ rộng cột cho FIN01 (trường hợp ngoại tệ)
              tableHeaders = `
                 <th style="width:5%">STT<br><span class="lang-en">No</span></th>
-                <th style="width:45%">Diễn giải<br><span class="lang-en">Description</span></th>
-                <th style="width:12%">Số tiền (${request.currency})<br><span class="lang-en">Amount</span></th>
-                <th style="width:13%">Số tiền (VND)<br><span class="lang-en">Amount</span></th>
-                <th style="width:15%">Mã TK<br><span class="lang-en">Acc Code</span></th>
+                <th style="width:33%">Diễn giải<br><span class="lang-en">Description</span></th>
+                <th style="width:15.5%">Số tiền (${request.currency})<br><span class="lang-en">Amount</span></th>
+                <th style="width:15.5%">Số tiền (VND)<br><span class="lang-en">Amount</span></th>
+                <th style="width:21%">Mã TK<br><span class="lang-en">Acc Code</span></th>
                 <th style="width:10%">Ghi chú<br><span class="lang-en">Remark</span></th>`;
+             // END MODIFICATION
             
             details.forEach((item, index) => {
                 detailsRowsHTML += `<tr>
@@ -277,12 +277,14 @@ function buildAndPopulateForm(formType, data, isDemo = false) {
         }
     } else { 
         if (isFino1) {
+            // START MODIFICATION: Thay đổi độ rộng cột cho FIN01 (trường hợp VND)
             tableHeaders = `
                 <th style="width:5%">STT<br><span class="lang-en">No</span></th>
-                <th style="width:50%">Diễn giải<br><span class="lang-en">Description</span></th>
-                <th style="width:20%">Số tiền (VND)<br><span class="lang-en">Amount</span></th>
-                <th style="width:15%">Mã TK<br><span class="lang-en">Acc Code</span></th>
+                <th style="width:40%">Diễn giải<br><span class="lang-en">Description</span></th>
+                <th style="width:24%">Số tiền (VND)<br><span class="lang-en">Amount</span></th>
+                <th style="width:21%">Mã TK<br><span class="lang-en">Acc Code</span></th>
                 <th style="width:10%">Ghi chú<br><span class="lang-en">Remark</span></th>`;
+            // END MODIFICATION
 
             details.forEach((item, index) => {
                 detailsRowsHTML += `<tr>
