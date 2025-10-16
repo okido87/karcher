@@ -140,10 +140,13 @@ const demoData = {
             { description: "Chi phí di chuyển taxi sân bay", acc_code: "6422 / 1111", amount: 350000, amount_vnd: 350000, remark: null } 
         ]
     },
+    // ===== START UPDATE DEMO DATA =====
     fino2: {
-        request: { request_type: "ADVANCE", applicant_name: "NGUYỄN VĂN AN", department: "Kinh doanh", request_date: "22-Aug-17", ref_no: "REF-00124", balance: 0, settlement_deadline: "31/09/2017", payment_method: "BANK", currency: "USD", exchange_rate: 25000, total_amount: 380, total_amount_vnd: 9500000, signatures: { director: "Lê Việt Hùng", chief_accountant: "Nguyễn Thị Lan Anh", head_of_dept: "Trần Văn Bình", accountant: "Lê Minh Châu", requestor: "NGUYỄN VĂN AN" }, bank_name: "VCB - Vietcombank", bank_account: "0501000130594", bank_account_holder: "NGUYEN TAN HIEN" },
-        details: [ { description: "Tạm ứng mua màn hình Dell U2723QE", amount: 300, amount_vnd: 7500000, remark: "Theo báo giá Phong Vũ" }, { description: "Tạm ứng mua bàn phím cơ", amount: 80, amount_vnd: 2000000, remark: "Cho nhân viên mới" } ]
+        // This is now the ADVANCE SALARY demo
+        request: { request_type: "ADVANCE SALARY", applicant_name: "NGUYỄN THỊ MAI", department: "Nhân sự", request_date: "25-Aug-25", ref_no: "AS-001", balance: 0, settlement_deadline: "31/08/2025", payment_method: "BANK", currency: "VND", exchange_rate: 1, total_amount: 10000000, total_amount_vnd: 10000000, signatures: { director: "Lê Việt Hùng", chief_accountant: "Nguyễn Thị Lan Anh", head_of_dept: "Trần Văn Bình", accountant: "Lê Minh Châu", requestor: "NGUYỄN THỊ MAI", hr_manager: "Phạm Thị Cúc" }, bank_name: "VCB - Vietcombank", bank_account: "0501000130594", bank_account_holder: "NGUYEN THI MAI" },
+        details: [ { description: "Tạm ứng lương tháng 08/2025", amount: 10000000, amount_vnd: 10000000, remark: "Lý do cá nhân" } ]
     },
+    // ===== END UPDATE DEMO DATA =====
     fino4: {
         request: { request_type: "REFUND", applicant_name: "TRẦN THỊ DUYÊN ANH", department: "Kế toán", request_date: "24-Aug-25", ref_no: "REF-00125", payment_method: "CASH", settlement_deadline: "N/A", currency: "VND", exchange_rate: 1, total_amount: 750000, total_amount_vnd: 750000, attachments: "Không có", signatures: { director: "Lê Việt Hùng", chief_accountant: "Nguyễn Thị Lan Anh", head_of_dept: "Trần Văn Bình", requestor: "TRẦN THỊ DUYÊN ANH", accountant: "Lê Minh Châu" } },
         details: [ { description: "Thu hoàn ứng công tác phí ngày 20/08", amount: 750000, amount_vnd: 750000, remark: "Hoàn tiền thừa sau quyết toán" } ]
@@ -167,7 +170,17 @@ function buildAndPopulateForm(formType, data, isDemo = false) {
     let title = '', subtitle = '', infoGridHTML = '', detailsTableHTML = '', signatureAreaHTML = '';
     
     if (isFino1) { title = 'ĐỀ NGHỊ THANH TOÁN'; subtitle = 'PAYMENT REQUEST'; }
-    if (isFino2) { title = 'PHIẾU ĐỀ NGHỊ TẠM ỨNG'; subtitle = 'REQUEST FOR ADVANCE'; }
+    // ===== START UPDATE: TITLE CHANGE =====
+    if (isFino2) {
+        if (request.request_type === 'ADVANCE SALARY') {
+            title = 'PHIẾU ĐỀ NGHỊ TẠM ỨNG LƯƠNG';
+            subtitle = 'REQUEST FOR ADVANCE SALARY';
+        } else {
+            title = 'PHIẾU ĐỀ NGHỊ TẠM ỨNG';
+            subtitle = 'REQUEST FOR ADVANCE';
+        }
+    }
+    // ===== END UPDATE: TITLE CHANGE =====
     if (isFino4) { title = 'ĐỀ NGHỊ THU HOÀN ỨNG'; subtitle = 'REFUND ADVANCE PAYMENT REQUEST'; }
     if (isFino5) { title = 'ĐỀ NGHỊ THU TIỀN'; subtitle = 'PAYMENT COLLECTION REQUEST'; }
 
@@ -222,113 +235,29 @@ function buildAndPopulateForm(formType, data, isDemo = false) {
         currencyInfoHTML = `<div class="summary-section" style="margin-bottom: 5px; text-align: right;"><strong>Loại tiền <span class="lang-en">(Currency)</span>:</strong> <span class="data-value">${request.currency}</span> &nbsp;&nbsp;&nbsp;&nbsp;<strong>Tỷ giá <span class="lang-en">(Exchange Rate)</span>:</strong> <span class="data-value">${formatCurrency(request.exchange_rate)}</span></div>`;
         
         if (isFino1) {
-             tableHeaders = `
-                <th style="width:5%">STT<br><span class="lang-en">No</span></th>
-                <th style="width:33%">Diễn giải<br><span class="lang-en">Description</span></th>
-                <th style="width:15.5%">Số tiền (${request.currency})<br><span class="lang-en">Amount</span></th>
-                <th style="width:15.5%">Số tiền (VND)<br><span class="lang-en">Amount</span></th>
-                <th style="width:21%">Mã TK<br><span class="lang-en">Acc Code</span></th>
-                <th style="width:10%">Ghi chú<br><span class="lang-en">Remark</span></th>`;
-            
-            details.forEach((item, index) => {
-                detailsRowsHTML += `<tr>
-                    <td class="center data-value">${index + 1}</td>
-                    <td class="data-value">${item.description || ''}</td>
-                    <td class="number data-value">${formatCurrency(item.amount)}</td>
-                    <td class="number data-value">${formatCurrency(item.amount_vnd)}</td>
-                    <td class="center data-value">${item.acc_code || ''}</td>
-                    <td class="data-value">${item.remark || ''}</td>
-                </tr>`;
-            });
-
-            tableFooter = `<tfoot><tr>
-                <td colspan="2" style="text-align:right; font-weight:bold;">TỔNG CỘNG <span class="lang-en">(TOTAL)</span></td>
-                <td class="number data-value" style="font-weight:bold;">${formatCurrency(request.total_amount)}</td>
-                <td class="number data-value" style="font-weight:bold;">${formatCurrency(request.total_amount_vnd)}</td>
-                <td colspan="2"></td>
-            </tr></tfoot>`;
-
+             tableHeaders = `<th style="width:5%">STT<br><span class="lang-en">No</span></th><th style="width:33%">Diễn giải<br><span class="lang-en">Description</span></th><th style="width:15.5%">Số tiền (${request.currency})<br><span class="lang-en">Amount</span></th><th style="width:15.5%">Số tiền (VND)<br><span class="lang-en">Amount</span></th><th style="width:21%">Mã TK<br><span class="lang-en">Acc Code</span></th><th style="width:10%">Ghi chú<br><span class="lang-en">Remark</span></th>`;
+            details.forEach((item, index) => { detailsRowsHTML += `<tr><td class="center data-value">${index + 1}</td><td class="data-value">${item.description || ''}</td><td class="number data-value">${formatCurrency(item.amount)}</td><td class="number data-value">${formatCurrency(item.amount_vnd)}</td><td class="center data-value">${item.acc_code || ''}</td><td class="data-value">${item.remark || ''}</td></tr>`; });
+            tableFooter = `<tfoot><tr><td colspan="2" style="text-align:right; font-weight:bold;">TỔNG CỘNG <span class="lang-en">(TOTAL)</span></td><td class="number data-value" style="font-weight:bold;">${formatCurrency(request.total_amount)}</td><td class="number data-value" style="font-weight:bold;">${formatCurrency(request.total_amount_vnd)}</td><td colspan="2"></td></tr></tfoot>`;
         } else {
-            tableHeaders = `
-                <th style="width:5%">STT<br><span class="lang-en">No</span></th>
-                <th style="width:35%">Diễn giải<br><span class="lang-en">Description</span></th>
-                <th style="width:20%">Số tiền (${request.currency})<br><span class="lang-en">Amount</span></th>
-                <th style="width:20%">Số tiền (VND)<br><span class="lang-en">Amount</span></th>
-                <th style="width:20%">Ghi chú<br><span class="lang-en">Remark</span></th>`;
-            
-            details.forEach((item, index) => {
-                detailsRowsHTML += `<tr>
-                    <td class="center data-value">${index + 1}</td>
-                    <td class="data-value">${item.description || ''}</td>
-                    <td class="number data-value">${formatCurrency(item.amount)}</td>
-                    <td class="number data-value">${formatCurrency(item.amount_vnd)}</td>
-                    <td class="data-value">${item.remark || ''}</td>
-                </tr>`;
-            });
-            
-            tableFooter = `<tfoot><tr>
-                <td colspan="2" style="text-align:right; font-weight:bold;">TỔNG CỘNG <span class="lang-en">(TOTAL)</span></td>
-                <td class="number data-value" style="font-weight:bold;">${formatCurrency(request.total_amount)}</td>
-                <td class="number data-value" style="font-weight:bold;">${formatCurrency(request.total_amount_vnd)}</td>
-                <td></td>
-            </tr></tfoot>`;
+            tableHeaders = `<th style="width:5%">STT<br><span class="lang-en">No</span></th><th style="width:35%">Diễn giải<br><span class="lang-en">Description</span></th><th style="width:20%">Số tiền (${request.currency})<br><span class="lang-en">Amount</span></th><th style="width:20%">Số tiền (VND)<br><span class="lang-en">Amount</span></th><th style="width:20%">Ghi chú<br><span class="lang-en">Remark</span></th>`;
+            details.forEach((item, index) => { detailsRowsHTML += `<tr><td class="center data-value">${index + 1}</td><td class="data-value">${item.description || ''}</td><td class="number data-value">${formatCurrency(item.amount)}</td><td class="number data-value">${formatCurrency(item.amount_vnd)}</td><td class="data-value">${item.remark || ''}</td></tr>`; });
+            tableFooter = `<tfoot><tr><td colspan="2" style="text-align:right; font-weight:bold;">TỔNG CỘNG <span class="lang-en">(TOTAL)</span></td><td class="number data-value" style="font-weight:bold;">${formatCurrency(request.total_amount)}</td><td class="number data-value" style="font-weight:bold;">${formatCurrency(request.total_amount_vnd)}</td><td></td></tr></tfoot>`;
         }
     } else { 
         if (isFino1) {
-            tableHeaders = `
-                <th style="width:5%">STT<br><span class="lang-en">No</span></th>
-                <th style="width:40%">Diễn giải<br><span class="lang-en">Description</span></th>
-                <th style="width:24%">Số tiền (VND)<br><span class="lang-en">Amount</span></th>
-                <th style="width:21%">Mã TK<br><span class="lang-en">Acc Code</span></th>
-                <th style="width:10%">Ghi chú<br><span class="lang-en">Remark</span></th>`;
-
-            details.forEach((item, index) => {
-                detailsRowsHTML += `<tr>
-                    <td class="center data-value">${index + 1}</td>
-                    <td class="data-value">${item.description || ''}</td>
-                    <td class="number data-value">${formatCurrency(item.amount)}</td>
-                    <td class="center data-value">${item.acc_code || ''}</td>
-                    <td class="data-value">${item.remark || ''}</td>
-                </tr>`;
-            });
-
-            tableFooter = `<tfoot><tr>
-                <td colspan="2" style="text-align:right; font-weight:bold;">TỔNG CỘNG <span class="lang-en">(TOTAL)</span></td>
-                <td class="number data-value" style="font-weight:bold;">${formatCurrency(request.total_amount)}</td>
-                <td colspan="2"></td>
-            </tr></tfoot>`;
-
+            tableHeaders = `<th style="width:5%">STT<br><span class="lang-en">No</span></th><th style="width:40%">Diễn giải<br><span class="lang-en">Description</span></th><th style="width:24%">Số tiền (VND)<br><span class="lang-en">Amount</span></th><th style="width:21%">Mã TK<br><span class="lang-en">Acc Code</span></th><th style="width:10%">Ghi chú<br><span class="lang-en">Remark</span></th>`;
+            details.forEach((item, index) => { detailsRowsHTML += `<tr><td class="center data-value">${index + 1}</td><td class="data-value">${item.description || ''}</td><td class="number data-value">${formatCurrency(item.amount)}</td><td class="center data-value">${item.acc_code || ''}</td><td class="data-value">${item.remark || ''}</td></tr>`; });
+            tableFooter = `<tfoot><tr><td colspan="2" style="text-align:right; font-weight:bold;">TỔNG CỘNG <span class="lang-en">(TOTAL)</span></td><td class="number data-value" style="font-weight:bold;">${formatCurrency(request.total_amount)}</td><td colspan="2"></td></tr></tfoot>`;
         } else {
             const headerWidths = isFino5 ? {no: '5%', desc: '40%', amount: '25%', remark: '30%'} : {no: '9%', desc: '46%', amount: '25%', remark: '20%'};
-            tableHeaders = `<th style="width:${headerWidths.no}">STT<br><span class="lang-en">No</span></th>
-                            <th style="width:${headerWidths.desc}">Diễn giải<br><span class="lang-en">Description</span></th>
-                            <th style="width:${headerWidths.amount}">Số tiền (VND)<br><span class="lang-en">Amount</span></th>
-                            <th style="width:${headerWidths.remark}">Ghi chú<br><span class="lang-en">Remark</span></th>`;
-            
-            details.forEach((item, index) => {
-                detailsRowsHTML += `<tr>
-                    <td class="center data-value">${index + 1}</td>
-                    <td class="data-value">${item.description || ''}</td>
-                    <td class="number data-value">${formatCurrency(item.amount)}</td>
-                    <td class="data-value">${item.remark || ''}</td>
-                </tr>`;
-            });
-            
-            tableFooter = `<tfoot><tr>
-                <td colspan="2" style="text-align:right; font-weight:bold;">TỔNG CỘNG <span class="lang-en">(TOTAL)</span></td>
-                <td class="number data-value" style="font-weight:bold;">${formatCurrency(request.total_amount)}</td>
-                <td></td>
-            </tr></tfoot>`;
+            tableHeaders = `<th style="width:${headerWidths.no}">STT<br><span class="lang-en">No</span></th><th style="width:${headerWidths.desc}">Diễn giải<br><span class="lang-en">Description</span></th><th style="width:${headerWidths.amount}">Số tiền (VND)<br><span class="lang-en">Amount</span></th><th style="width:${headerWidths.remark}">Ghi chú<br><span class="lang-en">Remark</span></th>`;
+            details.forEach((item, index) => { detailsRowsHTML += `<tr><td class="center data-value">${index + 1}</td><td class="data-value">${item.description || ''}</td><td class="number data-value">${formatCurrency(item.amount)}</td><td class="data-value">${item.remark || ''}</td></tr>`; });
+            tableFooter = `<tfoot><tr><td colspan="2" style="text-align:right; font-weight:bold;">TỔNG CỘNG <span class="lang-en">(TOTAL)</span></td><td class="number data-value" style="font-weight:bold;">${formatCurrency(request.total_amount)}</td><td></td></tr></tfoot>`;
         }
     }
 
     const advanceDetailTitle = isFino2 ? `<p style="font-weight:bold;">Chi tiết tạm ứng <span class="lang-en">(Advance detail)</span>:</p>` : '';
-    detailsTableHTML = `${advanceDetailTitle}${currencyInfoHTML}
-        <table class="details-table">
-            <thead><tr>${tableHeaders}</tr></thead>
-            <tbody>${detailsRowsHTML}</tbody>
-            ${tableFooter}
-        </table>`;
+    detailsTableHTML = `${advanceDetailTitle}${currencyInfoHTML}<table class="details-table"><thead><tr>${tableHeaders}</tr></thead><tbody>${detailsRowsHTML}</tbody>${tableFooter}</table>`;
 
     const buildSignature = (roleName, name) => { 
         const roleHTML = `<div class="role">${roleName}</div>`;
@@ -341,13 +270,41 @@ function buildAndPopulateForm(formType, data, isDemo = false) {
         return `${roleHTML}${nameContainerHTML}${dateHTML}`;
     };
     
-    const signatures = { director: isDemo ? request.signatures.director : request.approver_id, chief_accountant: isDemo ? request.signatures.chief_accountant : request.chief_accountant_id, head_of_dept: isDemo ? request.signatures.head_of_dept : request.checker_id, requestor: isDemo ? request.signatures.requestor : request.applicant_id, accountant: isDemo ? request.signatures.accountant : request.accountant_id };
+    // ===== START UPDATE: SIGNATURE AREA CHANGE =====
+    const signatures = { 
+        director: isDemo ? request.signatures.director : request.approver_id, 
+        chief_accountant: isDemo ? request.signatures.chief_accountant : request.chief_accountant_id, 
+        head_of_dept: isDemo ? request.signatures.head_of_dept : request.checker_id, 
+        requestor: isDemo ? request.signatures.requestor : request.applicant_id, 
+        accountant: isDemo ? request.signatures.accountant : request.accountant_id,
+        hr_manager: isDemo ? request.signatures.hr_manager : request.hr_manager_id
+    };
+
     const sigDirectorHTML = buildSignature('Giám đốc<br><span class="lang-en">Director</span>', signatures.director); 
     const sigChiefAccHTML = buildSignature('Kế toán trưởng<br><span class="lang-en">Chief accountant</span>', signatures.chief_accountant); 
     const sigHeadDeptHTML = buildSignature('Trưởng bộ phận<br><span class="lang-en">Head of dept.</span>', signatures.head_of_dept); 
     const sigRequestorHTML = buildSignature('Người đề nghị<br><span class="lang-en">Requestor</span>', signatures.requestor); 
     const sigAccountantHTML = buildSignature('Kế toán thanh toán<br><span class="lang-en">Accountant</span>', signatures.accountant);
-    signatureAreaHTML = `<div class="signature-area"><div class="signature-row"><div class="signature-block">${sigDirectorHTML}</div><div class="signature-block">${sigChiefAccHTML}</div><div class="signature-block">${sigHeadDeptHTML}</div></div><div class="signature-row"><div class="signature-block">${sigRequestorHTML}</div><div class="signature-block">${sigAccountantHTML}</div><div class="signature-block"></div></div></div>`;
+    
+    let signatureRow2LastBlock = '<div class="signature-block"></div>'; // Default empty block
+    if (isFino2 && request.request_type === 'ADVANCE SALARY') {
+        const sigHrManagerHTML = buildSignature('TP. Nhân sự<br><span class="lang-en">Admin & HR Manager</span>', signatures.hr_manager);
+        signatureRow2LastBlock = `<div class="signature-block">${sigHrManagerHTML}</div>`;
+    }
+
+    signatureAreaHTML = `<div class="signature-area">
+        <div class="signature-row">
+            <div class="signature-block">${sigDirectorHTML}</div>
+            <div class="signature-block">${sigChiefAccHTML}</div>
+            <div class="signature-block">${sigHeadDeptHTML}</div>
+        </div>
+        <div class="signature-row">
+            <div class="signature-block">${sigRequestorHTML}</div>
+            <div class="signature-block">${sigAccountantHTML}</div>
+            ${signatureRow2LastBlock}
+        </div>
+    </div>`;
+    // ===== END UPDATE: SIGNATURE AREA CHANGE =====
     
     const attachmentsHTML = (isFino1 || isFino4 || isFino5) ? `<div class="summary-section"><strong>Chứng từ đính kèm <span class="lang-en">(Supporting document)</span>:</strong> <span class="data-value">${request.attachments || ''}</span></div>` : '';
     const finalHTML = `<div class="watermark">${isDemo ? 'BẢN DEMO' : ''}</div><div class="form-header"><div class="company-name">KARCHER VIETNAM</div><div class="form-no">Form no: <span class="data-value">${formType.toUpperCase().replace('O','0')}</span></div></div><h1 class="form-title">${title}</h1><h2 class="form-subtitle lang-en">${subtitle}</h2><table class="info-grid">${infoGridHTML}</table>${detailsTableHTML}<div class="summary-section"><strong>Bằng chữ <span class="lang-en">(In words)</span>:</strong> <span class="amount-in-words data-value">${request.amount_in_words || ''}</span></div>${attachmentsHTML}${signatureAreaHTML}`;
@@ -366,7 +323,10 @@ document.addEventListener('DOMContentLoaded', function() {
             total_amount_vnd: parseFloat(urlParams.get('total_amount_vnd')),
             attachments: urlParams.get('attachments'), balance: parseFloat(urlParams.get('balance')),
             bank_name: urlParams.get('bank_name'), bank_account: urlParams.get('bank_account'), bank_account_holder: urlParams.get('bank_account_holder'),
-            applicant_id: urlParams.get('applicant_id'), checker_id: urlParams.get('checker_id'), approver_id: urlParams.get('approver_id'), chief_accountant_id: urlParams.get('chief_accountant_id'), accountant_id: urlParams.get('accountant_id')
+            applicant_id: urlParams.get('applicant_id'), checker_id: urlParams.get('checker_id'), approver_id: urlParams.get('approver_id'), chief_accountant_id: urlParams.get('chief_accountant_id'), accountant_id: urlParams.get('accountant_id'),
+            // ===== START UPDATE: ADD HR MANAGER ID =====
+            hr_manager_id: urlParams.get('hr_manager_id')
+            // ===== END UPDATE: ADD HR MANAGER ID =====
         };
         
         const detailsDataStr = urlParams.get('details_json');
@@ -375,9 +335,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let activeFormId = ''; 
         const formType = requestData.request_type; 
         if (formType === 'PAYMENT') { activeFormId = 'fino1'; } 
-        // ===== START UPDATE =====
         else if (formType === 'ADVANCE' || formType === 'ADVANCE SALARY') { activeFormId = 'fino2'; } 
-        // ===== END UPDATE =====
         else if (formType === 'REFUND') { activeFormId = 'fino4'; } 
         else if (formType === 'RECEIPT') { activeFormId = 'fino5'; } 
         else { loadDemoData(); return; } 
