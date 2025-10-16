@@ -222,7 +222,6 @@ function buildAndPopulateForm(formType, data, isDemo = false) {
         currencyInfoHTML = `<div class="summary-section" style="margin-bottom: 5px; text-align: right;"><strong>Loại tiền <span class="lang-en">(Currency)</span>:</strong> <span class="data-value">${request.currency}</span> &nbsp;&nbsp;&nbsp;&nbsp;<strong>Tỷ giá <span class="lang-en">(Exchange Rate)</span>:</strong> <span class="data-value">${formatCurrency(request.exchange_rate)}</span></div>`;
         
         if (isFino1) {
-             // START MODIFICATION: Thay đổi độ rộng cột cho FIN01 (trường hợp ngoại tệ)
              tableHeaders = `
                 <th style="width:5%">STT<br><span class="lang-en">No</span></th>
                 <th style="width:33%">Diễn giải<br><span class="lang-en">Description</span></th>
@@ -230,7 +229,6 @@ function buildAndPopulateForm(formType, data, isDemo = false) {
                 <th style="width:15.5%">Số tiền (VND)<br><span class="lang-en">Amount</span></th>
                 <th style="width:21%">Mã TK<br><span class="lang-en">Acc Code</span></th>
                 <th style="width:10%">Ghi chú<br><span class="lang-en">Remark</span></th>`;
-             // END MODIFICATION
             
             details.forEach((item, index) => {
                 detailsRowsHTML += `<tr>
@@ -277,14 +275,12 @@ function buildAndPopulateForm(formType, data, isDemo = false) {
         }
     } else { 
         if (isFino1) {
-            // START MODIFICATION: Thay đổi độ rộng cột cho FIN01 (trường hợp VND)
             tableHeaders = `
                 <th style="width:5%">STT<br><span class="lang-en">No</span></th>
                 <th style="width:40%">Diễn giải<br><span class="lang-en">Description</span></th>
                 <th style="width:24%">Số tiền (VND)<br><span class="lang-en">Amount</span></th>
                 <th style="width:21%">Mã TK<br><span class="lang-en">Acc Code</span></th>
                 <th style="width:10%">Ghi chú<br><span class="lang-en">Remark</span></th>`;
-            // END MODIFICATION
 
             details.forEach((item, index) => {
                 detailsRowsHTML += `<tr>
@@ -379,7 +375,9 @@ document.addEventListener('DOMContentLoaded', function() {
         let activeFormId = ''; 
         const formType = requestData.request_type; 
         if (formType === 'PAYMENT') { activeFormId = 'fino1'; } 
-        else if (formType === 'ADVANCE') { activeFormId = 'fino2'; } 
+        // ===== START UPDATE =====
+        else if (formType === 'ADVANCE' || formType === 'ADVANCE SALARY') { activeFormId = 'fino2'; } 
+        // ===== END UPDATE =====
         else if (formType === 'REFUND') { activeFormId = 'fino4'; } 
         else if (formType === 'RECEIPT') { activeFormId = 'fino5'; } 
         else { loadDemoData(); return; } 
