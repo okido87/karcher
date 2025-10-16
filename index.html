@@ -280,7 +280,7 @@ function buildAndPopulateForm(formType, data, isDemo = false) {
     // ===== START UPDATE: SIMPLIFIED SIGNATURE LOGIC =====
     let signatureRow2LastBlock = '<div class="signature-block"></div>';
     if (isFino3) {
-        const sigHrManagerHTML = buildSignature('TP. Nhân sự<br><span class="lang-en">Admin & HR Manager</span>', signatures.hr_manager);
+        const sigHrManagerHTML = buildSignature('TP. Nhân sự<br><span class="lang-en">HR & Admin Manager</span>', signatures.hr_manager);
         signatureRow2LastBlock = `<div class="signature-block">${sigHrManagerHTML}</div>`;
     }
     signatureAreaHTML = `<div class="signature-area"><div class="signature-row"><div class="signature-block">${sigDirectorHTML}</div><div class="signature-block">${sigChiefAccHTML}</div><div class="signature-block">${sigHeadDeptHTML}</div></div><div class="signature-row"><div class="signature-block">${sigRequestorHTML}</div><div class="signature-block">${sigAccountantHTML}</div>${signatureRow2LastBlock}</div></div>`;
